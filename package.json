@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^16.6.1",
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "mongoose": "^5.13.7",
     "newsapi": "^2.4.1"
