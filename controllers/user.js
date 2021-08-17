@@ -5,6 +5,8 @@ const addOne = userData => {
 	return UserModel.create(userData);
 };
 
+const getOne = userId => UserModel.findById(userId).exec();
+
 const login = async ({email, password}) => {
 	const user = await UserModel.findOne({email}).exec();
 
@@ -20,4 +22,5 @@ const login = async ({email, password}) => {
 module.exports = {
 	addOne,
 	login,
+	getOne,
 };
