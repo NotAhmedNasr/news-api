@@ -19,8 +19,18 @@ const login = async ({email, password}) => {
 		throw new Error('username');
 };
 
+const subscribe = (userId, sourceId) => {
+	return UserModel.findByIdAndUpdate(userId, {$addToSet: {subscribtions: sourceId}}, {new: true}).exec();
+};
+
+const unsubscribe = (userId, sourceId) => {
+	return UserModel.findByIdAndUpdate(userId, {$pull: {subscribtions: sourceId}}, {new: true}).exec();
+};
+
 module.exports = {
 	addOne,
 	login,
 	getOne,
+	subscribe,
+	unsubscribe,
 };

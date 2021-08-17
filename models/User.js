@@ -41,7 +41,7 @@ userSchema.pre('save', function (next) {
 });
 
 userSchema.pre('findOneAndUpdate', function (next) {
-	if (this._updated.password) {
+	if (this._updated && this._updated.password) {
 		hashUserPassword(this._updated, next);
 	} else {
 		next();
