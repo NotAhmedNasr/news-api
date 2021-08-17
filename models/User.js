@@ -56,7 +56,7 @@ const hashUserPassword = (user, next) => {
 		}).catch(err => next(err));
 };
 
-userSchema.method.isValidPassword = function (password) {
+userSchema.methods.isValidPassword = function (password) {
 	return compare(password, this.password);
 };
 
