@@ -16,7 +16,7 @@ const login = async ({email, password}) => {
 		else
 			throw new Error('password');
 	else
-		throw new Error('username');
+		throw new Error('email');
 };
 
 const subscribe = (userId, sourceId) => {

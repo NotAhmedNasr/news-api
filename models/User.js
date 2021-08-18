@@ -5,11 +5,19 @@ const { hash, compare } = require('bcryptjs');
 const promisedHash = promisify(hash);
 
 const userSchema = new mongoose.Schema({
-	fullname: {
+	firstname: {
 		type: String,
 		required: true,
 		trim: true,
-		match: /^[a-zA-Z\s]+$/,
+		match: /^[a-zA-Z]+$/,
+		minLength: 2,
+		maxLength: 150,
+	},
+	lastname: {
+		type: String,
+		required: true,
+		trim: true,
+		match: /^[a-zA-Z]+$/,
 		minLength: 2,
 		maxLength: 150,
 	},

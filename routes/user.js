@@ -5,19 +5,6 @@ const userActions = require('../controllers/user');
 
 const router = express.Router();
 
-
-router.post('/register', async (req, res, next) => {
-	const { body } = req;
-
-	try {
-		let user = await userActions.addOne(body);
-		user = await generateToken(user);
-		res.status(201).json(user);
-	} catch(err) {
-		next(err);
-	}
-});
-
 router.post('/login', async (req, res, next) => {
 	const { body } = req;
 	try {
@@ -29,7 +16,31 @@ router.post('/login', async (req, res, next) => {
 	}
 });
 
+router.post('/', async (req, res, next) => {
+	const { body } = req;
+
+	try {
+		let user = await userActions.addOne(body);
+		user = await generateToken(user);
+		res.status(201).json(user);
+	} catch(err) {
+		next(err);
+	}
+});
+
 router.use(authorize);
+
+// Get user by token
+router.get('/', async (req, res, next) => {
+	const { userId } = req;
+
+	try {
+		const user = await userActions.getOne(userId);
+		res.status(200).json(user); 
+	} catch (err) {
+		next(err);
+	}
+});
 
 router.patch('/subscribe/:sourceId', async (req, res, next) => {
 	const { params: { sourceId }, userId} = req;
