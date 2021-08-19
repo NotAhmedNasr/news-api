@@ -20,8 +20,10 @@ router.get('/sources', async (req, res, next) => {
 });
 
 router.get('/', async (req, res, next) => {
+	const { query } = req;
+
 	try {
-		const news = await newsActions.getAll(req.userId, 1, 20);
+		const news = await newsActions.getAll(req.userId, query.page, query.count);
 		
 		res.status(200).json(news.articles);
 	} catch(err) {
