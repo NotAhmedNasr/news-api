@@ -13,7 +13,7 @@ router.get('/sources', async (req, res, next) => {
 	try {
 		const sources = await newsActions.getSources();
 		
-		res.status(200).json(sources);
+		res.status(200).json(sources.sources);
 	} catch(err) {
 		next(err);
 	}
@@ -23,7 +23,7 @@ router.get('/', async (req, res, next) => {
 	try {
 		const news = await newsActions.getAll(req.userId, 1, 20);
 		
-		res.status(200).json(news);
+		res.status(200).json(news.articles);
 	} catch(err) {
 		next(err);
 	}
