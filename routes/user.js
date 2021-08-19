@@ -5,6 +5,7 @@ const userActions = require('../controllers/user');
 
 const router = express.Router();
 
+// Login
 router.post('/login', async (req, res, next) => {
 	const { body } = req;
 	try {
@@ -16,6 +17,7 @@ router.post('/login', async (req, res, next) => {
 	}
 });
 
+// Register
 router.post('/', async (req, res, next) => {
 	const { body } = req;
 
