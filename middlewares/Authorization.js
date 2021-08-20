@@ -23,7 +23,6 @@ const authorize = async (req, res, next) => {
 		req.userId = payload.data.id;
 		next();
 	} catch (error) {
-		console.log(error.message);
 		next(error);
 	}
 };
