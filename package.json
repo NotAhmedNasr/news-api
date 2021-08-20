@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --inspect ."
+    "start": "node .",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true npm install npm"
   },
   "author": "Ahmed Nasr",
   "license": "ISC",
@@ -21,5 +22,8 @@
   "devDependencies": {
     "eslint": "^7.32.0",
     "nodemon": "^2.0.12"
+  },
+  "engines": {
+    "node": "14.17.4"
   }
 }

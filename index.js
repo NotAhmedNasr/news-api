@@ -13,9 +13,9 @@ app.use(cors());
 app.use(express.json());
 
 
-const mongodb_URL = 'mongodb://localhost:27017/newsapp';
+const {MONGODB_URI, PORT=8000} = process.env;
 
-mongoose.connect(mongodb_URL, {useUnifiedTopology: true, useCreateIndex: true, useNewUrlParser: true})
+mongoose.connect(MONGODB_URI, {useUnifiedTopology: true, useCreateIndex: true, useNewUrlParser: true})
 	.then(() => {
 		console.log('Database server connected successfully!');
 	}).catch((err) => {
@@ -28,8 +28,6 @@ app.use('/api', appRouter);
 // Handling errors
 app.use(errorHandler);
 
-
-const {PORT = 8000} = process.env;
 
 app.listen(PORT, () => {
 	console.log(`App Started and listening on http://localhost:${PORT}`);

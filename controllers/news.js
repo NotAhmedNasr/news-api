@@ -2,7 +2,9 @@ const NewsApi = require('newsapi');
 
 const userActions = require('./user');
 
-const news = new NewsApi('cace536443054b80b17f033f64bb9b3c');
+const { NEWS_API_KEY } = process.env;
+
+const news = new NewsApi(NEWS_API_KEY);
 
 const getNews = async (userId, page = 1, count = 10) => {
 	const user = await userActions.getOne(userId);
@@ -16,14 +18,14 @@ const getNews = async (userId, page = 1, count = 10) => {
 		});
 	}
 
-	return Promise.resolve({articles: []});
+	return Promise.resolve({ articles: [] });
 };
 
 const getSources = () => {
 	return news.v2.sources({});
 };
 
-module.exports = { 
+module.exports = {
 	getNews,
 	getSources,
 };

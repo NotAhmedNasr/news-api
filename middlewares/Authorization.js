@@ -4,12 +4,14 @@ const jwt = require('jsonwebtoken');
 const signAsync = promisify(jwt.sign);
 const verifyAsync = promisify(jwt.verify);
 
+const { JWT_SECRET } = process.env;
+
 const generateToken = async (user) => {
 	const token = await signAsync({
 		data: {
 			id: user._id,
 		}
-	}, 'secret', { expiresIn: '1d' });
+	}, JWT_SECRET, { expiresIn: '1d' });
 
 	return {...(user.toJSON()), token};
 };
@@ -17,7 +19,7 @@ const generateToken = async (user) => {
 const authorize = async (req, res, next) => {
 	const { authorization } = req.headers;
 	try {
-		const payload = await verifyAsync(authorization, 'secret');
+		const payload = await verifyAsync(authorization, JWT_SECRET);
 		req.userId = payload.data.id;
 		next();
 	} catch (error) {
